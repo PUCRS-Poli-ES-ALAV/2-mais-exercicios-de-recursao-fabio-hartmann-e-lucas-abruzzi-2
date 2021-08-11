@@ -114,4 +114,45 @@ public class Questoes {
         return findSubStr(str.substring(1), match);
     }
 
+    //10
+    // Assinatura:  int nroDigit(int n)
+    // Caso de erro:Nenhum
+    // Caso de parada:n <= 1
+    // Caso comum nroDigit
+
+    public static int nroDigit(int n) {
+        if( n < 0) n = n * -1;
+        if(n == 0) return 1;
+        if(n/10 < 1 ) return 1;
+        return 1 + nroDigit(n/10);
+    }
+
+    //11
+    // Assinatura: ArrayList<String> permutations(String s)
+    // Caso de erro:
+    // Caso de parada:
+    // Caso comum: permutations
+
+    public static ArrayList<String> permutations(String s){
+        if(s.length() < 0) return null;
+        ArrayList<String > permutations = new ArrayList<>();
+
+        if(s.length() == 1) {
+            permutations.add(s);
+            return permutations;
+        }
+        char[] characters = s.toCharArray();
+        for(int i = 0; i < characters.length - 1; i++){
+            System.out.println("111111");
+           ArrayList<String> leftovers = permutations(s.substring(1));
+            for (int j = 0; j < leftovers.size(); j++ ){
+                System.out.println("22222222222");
+
+                permutations.add(characters[i] + leftovers.get(j) );
+            }
+        }
+
+        return permutations;
+    }
+
 }
