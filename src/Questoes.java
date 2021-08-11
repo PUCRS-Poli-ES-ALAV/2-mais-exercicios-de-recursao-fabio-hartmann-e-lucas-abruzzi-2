@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Questoes {
 
@@ -133,7 +134,7 @@ public class Questoes {
     // Caso de parada:
     // Caso comum: permutations
 
-    public static ArrayList<String> permutations(String s){
+    public static ArrayList<String> combination(String s){
         if(s.length() < 0) return null;
         ArrayList<String > permutations = new ArrayList<>();
 
@@ -142,17 +143,19 @@ public class Questoes {
             return permutations;
         }
         char[] characters = s.toCharArray();
-        for(int i = 0; i < characters.length - 1; i++){
-            System.out.println("111111");
-           ArrayList<String> leftovers = permutations(s.substring(1));
+        for(int i = 0; i < characters.length; i++){
+           ArrayList<String> leftovers = combination(s.substring(1).replaceFirst("" + s.charAt(i), "" + s.charAt(0)));
             for (int j = 0; j < leftovers.size(); j++ ){
-                System.out.println("22222222222");
-
                 permutations.add(characters[i] + leftovers.get(j) );
             }
         }
 
         return permutations;
+    }
+    
+    public static HashSet<String> permutations(String s){
+        // lindo
+        return new HashSet<String>(combination(s));
     }
 
 }
