@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Questoes {
 
     //1
@@ -67,15 +69,49 @@ public class Questoes {
 
     //6
         // Assinatura: String convBase2(int n)
-        // Caso de erro:n < 0
-        // Caso de parada: n == 0
+        // Caso de erro: n < 0
+        // Caso de parada: n == 0 -> ""
         // caso comum convBase2(n);
     public static String convBase2(int n){
         if(n < 0) throw new RuntimeException("Erro");
-        if(n == 0) return "0";
-        return "convBase2()";
+        if(n == 0) return "";
+        return convBase2(n >> 1) + n % 2;
     }
 
+    //7
+        // Assinatura: Integer calcSomatorio(ArrayList<Integer> ar)
+        // Caso de erro: arr == null
+        // Caso de parada: arr.size == 0
+        // Caso comum calcSomatorio
+    public static Integer calcSomatorio(ArrayList<Integer> ar) {
+        if (ar.size() == 0) return 0;
+        int v = ar.remove(0);
+        int v2 = calcSomatorio(ar);
+        return v + v2;
+    }
+        
+    //8
+        // Assinatura: Integer calcSomatorio(ArrayList<Integer> arr, int index)
+        // Caso de erro: arr == null
+        // Caso de parada: arr.size == 0
+        // Caso comum findBiggest
+    public static int findBiggest(ArrayList<Integer> ar) {
+        if (ar.size() == 0) return 0;
+        int v = ar.remove(0);
+        int v2 = findBiggest(ar);
+        return v > v2 ? v : v2;
+    }
 
+    //9
+        // Assinatura: boolean findSubStr(String str, String match)
+        // Caso de erro: str == null || match == null
+        // Caso de parada: inicio da str for igual ao match
+        // Caso comum findSubStr
+    public static boolean findSubStr(String str, String match) {
+        if (match.length() == 0) return true;
+        if (str.length() == 0) return false;
+        if (str.startsWith(match)) return true;
+        return findSubStr(str.substring(1), match);
+    }
 
 }
